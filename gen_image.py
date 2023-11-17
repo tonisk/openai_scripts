@@ -31,16 +31,17 @@ parser = argparse.ArgumentParser(prog="gen_image")
 parser.add_argument('prompt', help="Prompt")
 parser.add_argument('-s', '--size', default="1024x1024", choices=['256x256', '512x512', '1024x1024', '1024x1792', '1792x1024'], help="Image size")
 parser.add_argument('-m', '--model', default="dall-e-3", help="Model to use")
+parser.add_argument('-q', '--quality', default="standard", help="Quality")
 args = parser.parse_args()
 
 client = OpenAI()
 
 print("- Generating image")
 response = client.images.generate(
-  model="dall-e-3",
+  model=args.model,
   prompt=args.prompt,
   size=args.size,
-  quality="standard",
+  quality=args.quality,
   n=1,
 )
 
