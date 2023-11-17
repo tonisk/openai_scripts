@@ -36,7 +36,7 @@ args = parser.parse_args()
 
 client = OpenAI()
 
-print("- Generating image")
+print(f"Generating image: {args.prompt}")
 response = client.images.generate(
   model=args.model,
   prompt=args.prompt,
@@ -48,7 +48,7 @@ response = client.images.generate(
 image_url = response.data[0].url
 filename = os.path.join(base_dir, make_filename(args.prompt, args.size))
 
-print("- Downloading image")
+print(f"Downloading image: {image_url}")
 urlretrieve(image_url, filename)
 
 print(f"Saved to: {filename}")
